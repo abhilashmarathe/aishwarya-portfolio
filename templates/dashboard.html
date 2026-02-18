@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background: #111;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #1a1a1a;
+            padding: 40px 20px;
+            height: 100vh;
+        }
+
+        .sidebar h2 {
+            font-weight: 400;
+            margin-bottom: 40px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #aaa;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #c9a227;
+        }
+
+        .content {
+            flex: 1;
+            padding: 60px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: #1f1f1f;
+            padding: 30px;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .card p {
+            color: #aaa;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>10dulkar Studio Panel</h2>
+        <a href="/" target="_blank">View Website</a>
+    <div style="position:absolute; top:30px; right:40px;">
+    <form method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button style="
+            background:#c9a227;
+            border:none;
+            padding:8px 16px;
+            border-radius:6px;
+            font-weight:600;
+            cursor:pointer;
+        ">
+            Logout
+        </button>
+    </form>
+</div>
+</div>
+
+<div class="content">
+    <h1>Dashboard Overview</h1>
+
+    <div class="cards">
+        <div class="card">
+            <h3>{{ total_projects }}</h3>
+            <p>Total Projects</p>
+        </div>
+
+        <div class="card">
+            <h3>{{ total_categories }}</h3>
+            <p>Total Categories</p>
+        </div>
+
+        <div class="card">
+            <h3>{{ featured_count }}</h3>
+            <p>Featured Projects</p>
+        </div>
+
+        <div class="card">
+            <h3>{{ published_count }}</h3>
+            <p>Published Projects</p>
+        </div>
+    </div>
+
+    <h2 style="margin-top:60px;">Manage Projects</h2>
+        <div style="margin-bottom:40px;">
+            <a href="/upload/" style="
+                background:#c9a227;
+                padding:12px 20px;
+                color:black;
+                text-decoration:none;
+                border-radius:8px;
+                font-weight:600;
+            ">
+                + Add New Project
+            </a>
+        </div>
+
+<table style="width:100%; margin-top:20px; border-collapse:collapse;">
+    <tr style="background:#1f1f1f;">
+        <th style="padding:15px; text-align:left;">Title</th>
+        <th>Status</th>
+        <th>Featured</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for project in projects %}
+    <tr style="border-bottom:1px solid #222;">
+        <td style="padding:15px;">{{ project.title }}</td>
+        <td>
+            {% if project.is_published %}
+                <span style="color:#4CAF50;">Published</span>
+            {% else %}
+                <span style="color:#f44336;">Hidden</span>
+            {% endif %}
+        </td>
+        <td>
+            {% if project.featured %}
+                ⭐
+            {% endif %}
+        </td>
+        <td>
+            <a href="/edit/{{ project.id }}/">
+                Edit
+            </a>
+        </td>
+        <td>
+            <a href="/delete/{{ project.id }}/"
+                onclick="return confirm('Are you sure you want to delete this project?');"
+                style="color:#f44336; margin-left:15px;">
+                Delete
+            </a>
+
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</div>
+
+</body>
+</html>

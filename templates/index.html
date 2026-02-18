@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <title>Studio 10dulkar</title>
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            padding: 120px 20px 80px;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            font-weight: 200;
+            margin: 20px 0;
+            color: #ddd;
+        }
+
+        .categories {
+            margin-top: 2px;
+        }
+
+        .categories button {
+            background: none;
+            border: none;
+            color: #c9a227;
+            font-size: 14px;
+            margin: 0 15px;
+            cursor: pointer;
+            letter-spacing: 2px;
+        }
+
+        .categories button:hover {
+            text-decoration: underline;
+        }
+
+        /* UNIQUE GRID */
+        .gallery {
+            column-count: 3;
+            column-gap: 20px;
+            padding: 60px;
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 20px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            padding: 80px 20px;
+            border-top: 1px solid #222;
+        }
+
+        .contact h3 {
+            font-weight: 300;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .contact p {
+            color: #aaa;
+            margin: 5px 0;
+        }
+
+        .profile-wrapper {
+            display: flex;
+            justify-content: center;
+            padding: 80px 20px 40px;
+        }
+
+        .profile-card {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .profile-pic {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .availability {
+            color: #4CAF50;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .dot {
+            height: 9px;
+            width: 9px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+        .work-type {
+            color: #aaa;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .artist-name {
+            font-size: 36px;
+            margin: 10px 0;
+        }
+
+        .designation {
+            color: #c9a227;
+            margin-bottom: 20px;
+        }
+
+        .bio {
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            color: #c9a227;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: white;
+            transform: translateY(-3px);
+        }
+
+
+        .artist-name {
+            font-size: 32px;
+            margin: 0;
+        }
+
+        .designation {
+            color: #aaa;
+            margin: 5px 0 15px;
+        }
+
+        .social-icons a {
+            margin-right: 15px;
+            color: #c9a227;
+            font-size: 18px;
+        }
+
+        .profile-right {
+            text-align: right;
+        }
+
+        .availability {
+            font-weight: 500;
+            color: #4CAF50;
+        }
+
+        .dot {
+            height: 10px;
+            width: 10px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .bio {
+            padding: 40px 60px;
+            max-width: 800px;
+            color: #bbb;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #111;
+            color: #777;
+            font-size: 14px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <div class="profile-wrapper">
+
+    <div class="profile-card">
+
+        <img src="/static/image/profile_pic.jpeg" class="profile-pic">
+
+        <div class="availability">
+            <span class="dot"></span> Available for Work
+        </div>
+
+        <div class="work-type">
+            Freelancing • Contract Base
+        </div>
+
+        <h1 class="artist-name">Aishwarya 10dulkar</h1>
+
+        <p class="designation">
+            Graphic Designer • Brand Identity Specialist
+        </p>
+
+        <p class="bio">
+            I craft thoughtful visual systems that elevate brands with clarity and presence.
+            From packaging to publication design, every detail carries intention.
+        </p>
+
+        <div class="social-icons">
+            <a href="https://www.instagram.com/aisha10dulkar/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/aishwarya-tendulkar/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.behance.net/aishwarya10" target="_blank"><i class="fa-brands fa-behance"></i></a>
+            <a href="https://wa.me/8888549911?text=Hello! Want to know more about your work" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="hero">
+
+    <div class="categories">
+        <button onclick="filterCategory('')">All</button>
+        {% for category in categories %}
+            <button onclick="filterCategory('{{ category.id }}')">
+                {{ category.name|title }}
+            </button>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="gallery" id="gallery">
+    {% for project in projects %}
+    <div class="gallery-item">
+        <a href="/project/{{ project.id }}/">
+            <img src="{{ project.cover_image.url }}">
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="contact">
+    <h3>Contact</h3>
+    <p>Email: aishatendulkar@gmail.com</p>
+    <p>Phone: +91 88885 49911</p>
+    <p>Instagram: @aisha10dulkar</p>
+</div>
+
+<script>
+function filterCategory(categoryId) {
+    fetch(`/?category=${categoryId}`, {
+        headers: {
+            "X-Requested-With": "XMLHttpRequest"
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        const gallery = document.getElementById("gallery");
+        gallery.innerHTML = "";
+
+        data.projects.forEach(project => {
+            gallery.innerHTML += `
+                <div class="gallery-item">
+                    <a href="/project/${project.id}/">
+                        <img src="${project.image}">
+                    </a>
+                </div>
+            `;
+        });
+    });
+}
+</script>
+
+<footer class="footer">
+    <p>© <span id="year"></span> Studio 10dulkar</p>
+    <p>Developed by WebQuicks Technologies</p>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Project</title>
+    <style>
+        body {
+            background: #111;
+            color: white;
+            font-family: Inter, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 60px;
+        }
+
+        .form-box {
+            width: 500px;
+            background: #1f1f1f;
+            padding: 40px;
+            border-radius: 14px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background: #222;
+            border: none;
+            color: white;
+            border-radius: 6px;
+        }
+
+        input[type="file"] {
+            background: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #c9a227;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        label {
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .category-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .category-row select {
+            flex: 1;
+        }
+
+        .small-btn {
+            background: #2b2b2b;
+            color: #c9a227;
+            border: 1px solid #333;
+            padding: 10px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            width: auto;
+        }
+
+        .small-btn:hover {
+            background: #333;
+        }
+
+        #newCategoryInput {
+            margin-top: -10px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="form-box">
+    <h2>Upload New Project</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label>Title</label>
+        <input type="text" name="title" required>
+
+        <label>Description</label>
+        <textarea name="description" rows="4"></textarea>
+
+        <label>Category</label>
+
+<div class="category-row">
+    <select name="category" id="categorySelect">
+        <option value="">Select Category</option>
+        {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="button" id="addCategoryBtn" class="small-btn">
+        + New
+    </button>
+</div>
+
+<input type="text"
+       name="new_category"
+       id="newCategoryInput"
+       placeholder="Enter new category"
+       style="display:none;">
+
+
+        <label>Cover Image</label>
+        <input type="file" name="cover_image" required>
+
+        <label>
+            <input type="checkbox" name="featured"> Featured Project
+        </label>
+
+        <button type="submit">Publish Project</button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const addBtn = document.getElementById("addCategoryBtn");
+        const newInput = document.getElementById("newCategoryInput");
+        const selectBox = document.getElementById("categorySelect");
+
+        addBtn.addEventListener("click", function () {
+            newInput.style.display = "block";
+            selectBox.value = "";
+            newInput.focus();
+        });
+
+    });
+</script>
+
+
+</body>
+</html>
