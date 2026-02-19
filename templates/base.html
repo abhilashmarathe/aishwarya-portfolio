@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
 </head>
 <body>
 
@@ -14,7 +13,9 @@
     <div class="logo">Studio 10Dulkar</div>
 </nav>
 
-{% block content %}{% endblock %}
+<div class="wrapper">
+    {% block content %}{% endblock %}
+</div>
 
 </body>
 </html>
