@@ -53,10 +53,11 @@
 
         /* UNIQUE GRID */
         .gallery {
-            column-count: 3;
-            column-gap: 20px;
-            padding: 60px;
-        }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 60px;
+}
 
         .gallery-item {
             break-inside: avoid;
@@ -246,6 +247,58 @@
     border:1px solid #c9a227;
     padding:10px 20px;
     border-radius:30px;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 768px){
+
+    .profile-wrapper{
+        padding:40px 20px;
+    }
+
+    .profile-pic{
+        width:90px;
+        height:90px;
+    }
+
+    .artist-name{
+        font-size:28px;
+    }
+
+    .bio{
+        font-size:14px;
+        padding:0 10px;
+    }
+
+    .hero{
+        padding:30px 10px;
+    }
+
+    .categories{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:10px;
+    }
+
+    .categories button{
+        font-size:12px;
+        margin:0;
+    }
+
+    /* INSTAGRAM STYLE GRID */
+
+    .gallery{
+        grid-template-columns:repeat(3,1fr);
+        gap:3px;
+        padding:5px;
+    }
+
+    .gallery-item img{
+        border-radius:0;
+    }
+
 }
 
 
