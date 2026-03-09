@@ -99,53 +99,56 @@
 
         <label>Category</label>
 
-<div class="category-row">
-    <select name="category" id="categorySelect">
-        <option value="">Select Category</option>
-        {% for category in categories %}
-            <option value="{{ category.id }}">{{ category.name }}</option>
-        {% endfor %}
-    </select>
+        <div class="category-row">
+            <select name="category" id="categorySelect">
+                <option value="">Select Category</option>
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
 
-    <button type="button" id="addCategoryBtn" class="small-btn">
-        + New
-    </button>
-</div>
+            <button type="button" id="addCategoryBtn" class="small-btn">
+                + New
+            </button>
+        </div>
 
-<input type="text"
-       name="new_category"
-       id="newCategoryInput"
-       placeholder="Enter new category"
-       style="display:none;">
-
+        <input type="text"
+               name="new_category"
+               id="newCategoryInput"
+               placeholder="Enter new category"
+               style="display:none;">
 
         <label>Cover Image</label>
         <input type="file" name="cover_image" required>
+
+        <!-- NEW FIELD -->
+        <label>Catalogue Images (Optional)</label>
+        <input type="file" name="catalogue_images" multiple>
 
         <label>
             <input type="checkbox" name="featured"> Featured Project
         </label>
 
         <button type="submit">Publish Project</button>
+
     </form>
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
 
-        const addBtn = document.getElementById("addCategoryBtn");
-        const newInput = document.getElementById("newCategoryInput");
-        const selectBox = document.getElementById("categorySelect");
+    const addBtn = document.getElementById("addCategoryBtn");
+    const newInput = document.getElementById("newCategoryInput");
+    const selectBox = document.getElementById("categorySelect");
 
-        addBtn.addEventListener("click", function () {
-            newInput.style.display = "block";
-            selectBox.value = "";
-            newInput.focus();
-        });
-
+    addBtn.addEventListener("click", function () {
+        newInput.style.display = "block";
+        selectBox.value = "";
+        newInput.focus();
     });
-</script>
 
+});
+</script>
 
 </body>
 </html>
