@@ -211,6 +211,43 @@
             font-size: 14px;
         }
 
+.viewer{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:black;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:999;
+}
+
+.viewer img{
+    max-width:95%;
+    max-height:80%;
+    border-radius:8px;
+}
+
+.close-btn{
+    position:absolute;
+    top:20px;
+    right:25px;
+    font-size:30px;
+    cursor:pointer;
+}
+
+.open-project{
+    margin-top:20px;
+    color:#c9a227;
+    text-decoration:none;
+    border:1px solid #c9a227;
+    padding:10px 20px;
+    border-radius:30px;
+}
+
 
     </style>
 </head>
@@ -285,11 +322,18 @@
 <div class="gallery" id="gallery">
     {% for project in projects %}
     <div class="gallery-item">
-        <a href="/project/{{ project.id }}/">
-            <img src="{{ project.cover_image.url }}">
-        </a>
+        <img src="{{ project.cover_image.url }}" 
+             onclick="openViewer('{{ project.cover_image.url }}','/project/{{ project.id }}/')">
     </div>
     {% endfor %}
+</div>
+
+<div id="imageViewer" class="viewer">
+    <span class="close-btn" onclick="closeViewer()">×</span>
+
+    <img id="viewerImage">
+
+    <a id="viewerLink" class="open-project">Open Project</a>
 </div>
 
 <script>
@@ -324,6 +368,24 @@ function filterCategory(categoryId) {
 
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<script>
+
+function openViewer(image, link){
+
+    document.getElementById("viewerImage").src = image;
+
+    const projectLink = document.getElementById("viewerLink");
+    projectLink.href = link;
+
+    document.getElementById("imageViewer").style.display = "flex";
+}
+
+function closeViewer(){
+    document.getElementById("imageViewer").style.display = "none";
+}
+
 </script>
 
 
