@@ -34,6 +34,18 @@
             color: #c9a227;
             text-decoration: none;
         }
+
+        .catalogue {
+            max-width: 900px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .catalogue img {
+            width: 100%;
+            margin-bottom: 25px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 
@@ -46,6 +58,12 @@
 <img src="{{ project.cover_image.url }}">
 
 <p>{{ project.description }}</p>
+
+<div class="catalogue">
+    {% for img in project.catalogue_images.all %}
+        <img src="{{ img.image.url }}">
+    {% endfor %}
+</div>
 
 </body>
 </html>
