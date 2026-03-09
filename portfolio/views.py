@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Project, Category
+from .models import Project, Category, Catalogue
 from django.contrib.auth.decorators import login_required
 from django.db.models.functions import Lower
 
@@ -73,7 +73,6 @@ def upload_project(request):
         cover_image = request.FILES.get("cover_image")
         featured = request.POST.get("featured") == "on"
 
-        # ---- Category Logic ----
         if new_category_name:
             category, created = Category.objects.get_or_create(
                 name=new_category_name.strip()
@@ -86,8 +85,7 @@ def upload_project(request):
                 "error": "Please select or create a category."
             })
 
-        # ---- Create Project ----
-        Project.objects.create(
+        project = Project.objects.create(
             title=title,
             description=description,
             category=category,
@@ -95,12 +93,19 @@ def upload_project(request):
             featured=featured
         )
 
+        catalogue_images = request.FILES.getlist("catalogue_images")
+
+        for img in catalogue_images:
+            Catalogue.objects.create(
+                project=project,
+                image=img
+            )
+
         return redirect("dashboard")
 
     return render(request, "upload.html", {
         "categories": categories
     })
-
 @login_required
 def edit_project(request, pk):
     project = get_object_or_404(Project, pk=pk)
