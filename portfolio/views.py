@@ -1,11 +1,29 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Project, Category, Catalogue
+from .models import Project, Category, Catalogue, Profile
 from django.contrib.auth.decorators import login_required
 from django.db.models.functions import Lower
 
 
+
+
 @login_required
 def dashboard(request):
+    profile = Profile.objects.first()
+
+    if not profile:
+        profile = Profile.objects.create(name="Portfolio Owner")
+
+    if request.method == "POST":
+        name = request.POST.get("name")
+
+        if name:
+            profile.name = name
+
+        if request.FILES.get("profile_image"):
+            profile.profile_image = request.FILES["profile_image"]
+
+        profile.save()
+
     total_projects = Project.objects.count()
     total_categories = Category.objects.count()
     featured_count = Project.objects.filter(featured=True).count()
@@ -13,6 +31,7 @@ def dashboard(request):
     projects = Project.objects.all()
 
     return render(request, "dashboard.html", {
+        "profile": profile,
         "total_projects": total_projects,
         "total_categories": total_categories,
         "featured_count": featured_count,
@@ -24,6 +43,8 @@ def dashboard(request):
 from django.http import JsonResponse
 
 def home(request):
+    profile = Profile.objects.first()
+    
     category_id = request.GET.get("category")
 
     # Only categories that have at least one published project
@@ -49,8 +70,10 @@ def home(request):
 
     return render(request, "index.html", {
         "projects": projects,
-        "categories": categories
+        "categories": categories,
+        "profile": profile
     })
+    
 
 
 def project_detail(request, pk):
@@ -106,6 +129,7 @@ def upload_project(request):
     return render(request, "upload.html", {
         "categories": categories
     })
+    
 @login_required
 def edit_project(request, pk):
     project = get_object_or_404(Project, pk=pk)
@@ -120,6 +144,11 @@ def edit_project(request, pk):
 
         if request.FILES.get("cover_image"):
             project.cover_image = request.FILES.get("cover_image")
+            
+        images = request.FILES.getlist("catalogue_images")
+
+        for img in images:
+            CatalogueImage.objects.create(project=project, image=img)
 
         project.save()
         return redirect("dashboard")
@@ -134,5 +163,3 @@ def delete_project(request, pk):
     project = get_object_or_404(Project, pk=pk)
     project.delete()
     return redirect("dashboard")
-
-
