@@ -1,215 +1,262 @@
 <!DOCTYPE html>
+
 <html>
 <head>
     <title>Upload Project</title>
-    <style>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+    body {
+        background: #111;
+        color: white;
+        font-family: Inter, sans-serif;
+        display: flex;
+        justify-content: center;
+        padding: 60px 20px;
+        margin: 0;
+    }
+
+    .form-box {
+        width: 100%;
+        max-width: 520px;
+        background: #1f1f1f;
+        padding: 40px;
+        border-radius: 14px;
+        box-sizing: border-box;
+    }
+
+    h2 {
+        margin-top: 0;
+    }
+
+    input,
+    textarea,
+    select {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        background: #222;
+        border: none;
+        color: white;
+        border-radius: 6px;
+        box-sizing: border-box;
+    }
+
+    input[type="file"] {
+        background: none;
+    }
+
+    label {
+        font-size: 14px;
+        color: #aaa;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #c9a227;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        border-radius: 6px;
+    }
+
+    button:hover {
+        opacity: 0.9;
+    }
+
+    .category-row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .category-row select {
+        flex: 1;
+    }
+
+    .small-btn {
+        background: #2b2b2b;
+        color: #c9a227;
+        border: 1px solid #333;
+        padding: 10px 14px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 13px;
+        width: auto;
+    }
+
+    .small-btn:hover {
+        background: #333;
+    }
+
+    #newCategoryInput {
+        margin-top: -10px;
+    }
+
+    #drop-area {
+        border: 2px dashed #444;
+        padding: 30px;
+        text-align: center;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        transition: 0.2s;
+    }
+
+    #drop-area:hover {
+        border-color: #c9a227;
+    }
+
+    #preview-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        gap: 10px;
+    }
+
+    .preview-box {
+        position: relative;
+    }
+
+    .preview-box img {
+        width: 100%;
+        height: 90px;
+        object-fit: cover;
+        border-radius: 6px;
+    }
+
+    .remove-btn {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        background: red;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        font-size: 12px;
+        cursor: pointer;
+    }
+
+    #cover-preview img {
+        width: 150px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    /* MOBILE RESPONSIVE */
+
+    @media (max-width: 768px) {
+
         body {
-            background: #111;
-            color: white;
-            font-family: Inter, sans-serif;
-            display: flex;
-            justify-content: center;
-            padding: 60px;
+            padding: 20px;
         }
 
         .form-box {
-            width: 500px;
-            background: #1f1f1f;
-            padding: 40px;
-            border-radius: 14px;
-        }
-
-        input, textarea, select {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            background: #222;
-            border: none;
-            color: white;
-            border-radius: 6px;
-        }
-
-        input[type="file"] {
-            background: none;
-        }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #c9a227;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        button:hover {
-            opacity: 0.9;
-        }
-
-        label {
-            font-size: 14px;
-            color: #aaa;
+            padding: 25px;
         }
 
         .category-row {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .category-row select {
-            flex: 1;
+            flex-direction: column;
+            align-items: stretch;
         }
 
         .small-btn {
-            background: #2b2b2b;
-            color: #c9a227;
-            border: 1px solid #333;
-            padding: 10px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
-            width: auto;
-        }
-
-        .small-btn:hover {
-            background: #333;
-        }
-
-        #newCategoryInput {
-            margin-top: -10px;
+            width: 100%;
         }
 
         #drop-area {
-            border: 2px dashed #444;
-            padding: 30px;
-            text-align: center;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-bottom: 20px;
-            transition: 0.2s;
+            padding: 20px;
+            font-size: 14px;
         }
 
-        #drop-area:hover {
-            border-color: #c9a227;
-        }
+    }
 
-        #preview-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-            gap: 10px;
-        }
+</style>
 
-        .preview-box {
-            position: relative;
-        }
-
-        .preview-box img {
-            width: 100%;
-            height: 90px;
-            object-fit: cover;
-            border-radius: 6px;
-        }
-
-        .remove-btn {
-            position: absolute;
-            top: -6px;
-            right: -6px;
-            background: red;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 12px;
-            cursor: pointer;
-        }
-
-        #cover-preview img{
-            width:150px;
-            height:120px;
-            object-fit:cover;
-            border-radius:8px;
-        }
-
-    </style>
 </head>
+
 <body>
 
 <div class="form-box">
-    <h2>Upload New Project</h2>
 
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
+<h2>Upload New Project</h2>
 
-        <label>Title</label>
-        <input type="text" name="title" required>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
 
-        <label>Description</label>
-        <textarea name="description" rows="4"></textarea>
+    <label>Title</label>
+    <input type="text" name="title" required>
 
-        <label>Category</label>
+    <label>Description</label>
+    <textarea name="description" rows="4"></textarea>
 
-        <div class="category-row">
-            <select name="category" id="categorySelect">
-                <option value="">Select Category</option>
-                {% for category in categories %}
-                    <option value="{{ category.id }}">{{ category.name }}</option>
-                {% endfor %}
-            </select>
+    <label>Category</label>
 
-            <button type="button" id="addCategoryBtn" class="small-btn">
-                + New
-            </button>
-        </div>
+    <div class="category-row">
+        <select name="category" id="categorySelect">
+            <option value="">Select Category</option>
 
-        <input type="text"
-               name="new_category"
-               id="newCategoryInput"
-               placeholder="Enter new category"
-               style="display:none;">
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
 
-        <label>Cover Image</label>
+        </select>
 
-        <input type="file" name="cover_image" id="coverInput" accept="image/*" required>
+        <button type="button" id="addCategoryBtn" class="small-btn">
+            + New
+        </button>
+    </div>
 
-        <div id="cover-preview" style="margin-bottom:20px;"></div>
-        
-        <!-- NEW FIELD -->
-        <label>Catalogue Images (Optional)</label>
+    <input
+        type="text"
+        name="new_category"
+        id="newCategoryInput"
+        placeholder="Enter new category"
+        style="display:none;"
+    >
 
-        <div id="drop-area">
-            <p>Drag & Drop images here or click to select</p>
-            <input type="file" id="catalogueInput" name="catalogue_images" multiple accept="image/*" hidden>
-        </div>
+    <label>Cover Image</label>
 
-        <div id="preview-container"></div>
+    <input type="file"
+           name="cover_image"
+           id="coverInput"
+           accept="image/*"
+           required>
 
-        
+    <div id="cover-preview" style="margin-bottom:20px;"></div>
 
-        <button type="submit">Publish Project</button>
+    <label>Catalogue Images (Optional)</label>
 
-    </form>
+    <div id="drop-area">
+        <p>Drag & Drop images here or click to select</p>
+
+        <input
+            type="file"
+            id="catalogueInput"
+            name="catalogue_images"
+            multiple
+            accept="image/*"
+            hidden
+        >
+    </div>
+
+    <div id="preview-container"></div>
+
+    <button type="submit">Publish Project</button>
+
+</form>
+
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
 
-    const addBtn = document.getElementById("addCategoryBtn");
-    const newInput = document.getElementById("newCategoryInput");
-    const selectBox = document.getElementById("categorySelect");
-
-    addBtn.addEventListener("click", function () {
-        newInput.style.display = "block";
-        selectBox.value = "";
-        newInput.focus();
-    });
-
-});
-</script>
-
-<script>
 document.addEventListener("DOMContentLoaded", function () {
 
     const addBtn = document.getElementById("addCategoryBtn");
@@ -250,7 +297,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function handleFiles(files) {
+
         for (let file of files) {
+
             filesArray.push(file);
 
             const reader = new FileReader();
@@ -274,17 +323,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 box.appendChild(img);
                 box.appendChild(remove);
+
                 preview.appendChild(box);
             };
 
             reader.readAsDataURL(file);
         }
     }
-});
-</script>
 
-<script>
-    // COVER IMAGE PREVIEW
+});
+
 const coverInput = document.getElementById("coverInput");
 const coverPreview = document.getElementById("cover-preview");
 
@@ -301,15 +349,13 @@ coverInput.addEventListener("change", function () {
 
         const img = document.createElement("img");
         img.src = e.target.result;
-        img.style.width = "150px";
-        img.style.borderRadius = "8px";
-        img.style.objectFit = "cover";
 
         coverPreview.appendChild(img);
     };
 
     reader.readAsDataURL(file);
 });
+
 </script>
 
 </body>
