@@ -4,9 +4,15 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Studio 10dulkar</title>
     <style>
+        html, body{
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
         body {
             margin: 0;
             background: #000;
@@ -53,26 +59,26 @@
 
         /* UNIQUE GRID */
         .gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 60px;
-}
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 20px;
+            padding: 40px 80px;
+        }
 
         .gallery-item {
-            break-inside: avoid;
-            margin-bottom: 20px;
+            width: 100%;
         }
 
         .gallery-item img {
             width: 100%;
-            border-radius: 12px;
+            height: auto;
+            border-radius: 10px;
             transition: 0.3s;
         }
 
 
         .gallery-item:hover img {
-            transform: scale(1.05);
+            transform: scale(1.04);
         }
 
         /* Contact Section */
@@ -102,11 +108,12 @@
         .profile-card {
             text-align: center;
             max-width: 600px;
+            width: 100%;
         }
 
         .profile-pic {
-            width: 130px;
-            height: 130px;
+            width: 170px;
+            height: 170px;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 20px;
@@ -206,100 +213,105 @@
 
         .footer {
             text-align: center;
-            padding: 40px;
+            padding: 30px 20px;
             border-top: 1px solid #111;
             color: #777;
             font-size: 14px;
+            margin-bottom: 0;
         }
 
-.viewer{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:black;
-    display:none;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    z-index:999;
-}
-
-.viewer img{
-    max-width:95%;
-    max-height:80%;
-    border-radius:8px;
-}
-
-.close-btn{
-    position:absolute;
-    top:20px;
-    right:25px;
-    font-size:30px;
-    cursor:pointer;
-}
-
-.open-project{
-    margin-top:20px;
-    color:#c9a227;
-    text-decoration:none;
-    border:1px solid #c9a227;
-    padding:10px 20px;
-    border-radius:30px;
-}
-
-/* MOBILE RESPONSIVE */
-
-@media (max-width: 768px){
-
-    .profile-wrapper{
-        padding:40px 20px;
-    }
-
-    .profile-pic{
-        width:90px;
-        height:90px;
-    }
-
-    .artist-name{
-        font-size:28px;
-    }
-
-    .bio{
-        font-size:14px;
-        padding:0 10px;
-    }
-
-    .hero{
-        padding:30px 10px;
-    }
-
-    .categories{
-        display:flex;
-        flex-wrap:wrap;
-        justify-content:center;
-        gap:10px;
-    }
-
-    .categories button{
-        font-size:12px;
-        margin:0;
-    }
-
-    /* INSTAGRAM STYLE GRID */
-
-    .gallery{
-        grid-template-columns:repeat(3,1fr);
-        gap:3px;
-        padding:5px;
-    }
-
-    .gallery-item img{
-        border-radius:0;
-    }
-
-}
+        .viewer{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:black;
+            display:none;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;
+            z-index:999;
+        }
+        
+        .viewer img{
+            max-width:95%;
+            max-height:80%;
+            border-radius:8px;
+        }
+        
+        .close-btn{
+            position:absolute;
+            top:20px;
+            right:25px;
+            font-size:30px;
+            cursor:pointer;
+        }
+        
+        .open-project{
+            margin-top:20px;
+            color:#c9a227;
+            text-decoration:none;
+            border:1px solid #c9a227;
+            padding:10px 20px;
+            border-radius:30px;
+        }
+        
+        /* MOBILE RESPONSIVE */
+        
+        @media (max-width: 768px){
+        
+            .profile-wrapper{
+                padding:40px 15px;
+            }
+        
+            .profile-pic{
+                width:120px;
+                height:120px;
+            }
+        
+            .artist-name{
+                font-size:26px;
+            }
+        
+            .bio{
+                font-size:14px;
+                padding:0 10px;
+            }
+        
+            .hero{
+                padding:20px 10px;
+            }
+        
+            .categories{
+                display:flex;
+                overflow-x: auto;
+                justify-content:flex-start;
+                gap:10px;
+                padding: 10px;
+            }
+        
+            .categories button{
+                color:#c9a227;
+                padding:8px 16px;
+                font-size:13px;
+                cursor:pointer;
+                letter-spacing:1px;
+            }
+        
+            /* INSTAGRAM STYLE GRID */
+        
+            .gallery{
+                grid-template-columns:repeat(3,1fr);
+                gap:6px;
+                padding:10px;
+            }
+        
+            .gallery-item img{
+                border-radius:10px;
+                overflow: hidden;
+            }
+        }
 
 
     </style>
@@ -311,20 +323,20 @@
 
     <div class="profile-card">
 
-        <img src="{% static 'profile_pic.jpg' %}" class="profile-pic">
+        <img src="{{ profile.profile_image.url }}" class="profile-pic">
 
         <div class="availability">
             <span class="dot"></span> Available for Work
         </div>
 
-        <div class="work-type">
+        <!--div class="work-type">
             Freelancing • Contract Base
-        </div>
+        </div-->
 
         <h1 class="artist-name">Aishwarya Tendulkar</h1>
 
         <p class="designation">
-            Graphic Designer • Brand Identity Specialist
+            Graphic Designer • Illustrator
         </p>
 
         <p class="bio">
@@ -345,7 +357,7 @@
         <i class="fa-brands fa-behance"></i>
     </a>
 
-    <a href="https://wa.me/8888549911?text=Hello! Want to know more about your work" target="_blank">
+    <a href="https://wa.me/+918888549911?text=Hello! Want to know more about your work" target="_blank">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
@@ -440,6 +452,7 @@ function closeViewer(){
 }
 
 </script>
+
 
 
 </body>
